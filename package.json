@@ -1,0 +1,26 @@
+{
+  "name": "makerfaire-finder",
+  "version": "1.0.0",
+  "description": "Finds maker faires near you",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.15.4"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "repository": {
+    "url": "https://glitch.com/edit/#!/welcome-project"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express",
+    "makerfaire",
+    "location"
+  ]
+}
