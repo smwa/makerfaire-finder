@@ -22,13 +22,23 @@ $(function() {
             if (location.country_name == "United States") {
               isMetric = false;
             }
-            populateTable(faires, userLocation);
+            populateTable(faires, userLocation);            
+          },
+          complete: function() {
+            if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(useGpsLocation);
+            }
           }
       });
   
   
 
 });
+
+function useGpsLocation(position) {
+  userLocation = position.coords;
+  populateTable(faires, userLocation);
+}
 
 function populateTable(locations, userLocation) {
   
@@ -58,7 +68,7 @@ function populateTable(locations, userLocation) {
         distance = Math.round(location.distanceFromMe, 0) + "km";
       }
       else {
-        distance = Math.round(location.distanceFromMe, 0) * 0.621371 + " miles";
+        distance = Math.round(location.distanceFromMe * 0.621371, 0) + " miles";
       }
     }
     var dt = new Date(location.event_start_dt);
@@ -94,4 +104,3 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
 function deg2rad(deg) {
   return deg * (Math.PI/180)
 }
-
