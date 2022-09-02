@@ -5,7 +5,7 @@ var userLocation = null;
 var isMetric = true;
 
 $(function() {
-  $.get('/faires', function(data) {
+  $.get('./faires.json', function(data) {
     
     faires = data.Locations;
     
@@ -80,12 +80,6 @@ function populateTable(locations, userLocation) {
     $table.append("<tr><td>"+location.name+"</td><td>"+location.event_start_dt.substring(0,10)+"</td><td>"+daysFromNow+"</td><td>"+distance+"</td><td>"+location.event_type+"</td></tr>");
   });
 }
-
-
-
-
-
-
 
 function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
   var R = 6371; // Radius of the earth in km
