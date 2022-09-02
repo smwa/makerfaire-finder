@@ -14,15 +14,15 @@ $(function() {
 
   
     $.ajax({
-          url: "https://geoip-db.com/jsonp",
-          jsonpCallback: "callback",
+          url: "https://get.geojs.io/v1/ip/geo.js",
+          jsonpCallback: "geoip",
           dataType: "jsonp",
           success: function( location ) {
             userLocation = location;
-            if (location.country_name == "United States") {
+            if (location.country == "United States") {
               isMetric = false;
             }
-            populateTable(faires, userLocation);            
+            populateTable(faires, userLocation);
           },
           complete: function() {
             if (navigator.geolocation) {
