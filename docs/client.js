@@ -25,7 +25,7 @@ $(function() {
             populateTable(faires, userLocation);
           },
           complete: function() {
-            if (navigator.geolocation && userLocation.accuracy >= 50) {
+            if (navigator.geolocation && (!userLocation || userLocation.accuracy >= 50)) {
               navigator.geolocation.getCurrentPosition(useGpsLocation);
             }
           }
@@ -41,6 +41,15 @@ function useGpsLocation(position) {
 }
 
 function populateTable(locations, userLocation) {
+
+  locations = locations.filter((location) => {
+    var dt = new Date(location.event_start_dt);
+    var today = new Date();
+    var timeDiff = dt.getTime() - today.getTime();
+    var daysFromNow = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+    return daysFromNow >= 0;
+  });
   
   if (userLocation) {
     locations.forEach(function(location) {
@@ -73,8 +82,7 @@ function populateTable(locations, userLocation) {
     }
     var dt = new Date(location.event_start_dt);
     var today = new Date();
-    var daysFromNow = Math.floor();
-    var timeDiff = Math.abs(dt.getTime() - today.getTime());
+    var timeDiff = dt.getTime() - today.getTime();
     var daysFromNow = Math.ceil(timeDiff / (1000 * 3600 * 24));
     
     $table.append("<tr><td>"+location.name+"</td><td>"+location.event_start_dt.substring(0,10)+"</td><td>"+daysFromNow+"</td><td>"+distance+"</td><td>"+location.event_type+"</td></tr>");
