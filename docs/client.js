@@ -25,7 +25,7 @@ $(function() {
             populateTable(faires, userLocation);
           },
           complete: function() {
-            if (navigator.geolocation) {
+            if (navigator.geolocation && userLocation.accuracy >= 50) {
               navigator.geolocation.getCurrentPosition(useGpsLocation);
             }
           }
