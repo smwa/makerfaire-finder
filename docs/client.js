@@ -85,7 +85,7 @@ function populateTable(locations, userLocation) {
     var timeDiff = dt.getTime() - today.getTime();
     var daysFromNow = Math.ceil(timeDiff / (1000 * 3600 * 24));
     
-    $table.append("<tr><td>"+location.name+"</td><td>"+location.event_start_dt.substring(0,10)+"</td><td>"+daysFromNow+"</td><td>"+distance+"</td><td>"+location.event_type+"</td></tr>");
+    $table.append(`<tr><td><a href="${location.faire_url}" target="_blank">${location.name}</a></td><td>${location.event_start_dt.substring(0,10)}</td><td>${daysFromNow}</td><td>${distance}</td><td>${location.event_type}</td></tr>`);
   });
 }
 
